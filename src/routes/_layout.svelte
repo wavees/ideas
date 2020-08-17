@@ -44,6 +44,7 @@
 
 <svelte:head>
 	<link rel="stylesheet" href="./fonts/Junegull/junegull.css">
+	<title>Wavees Ideas</title>
 </svelte:head>
 
 { #if $user.loaded } 
