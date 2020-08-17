@@ -13,6 +13,8 @@
     Avatar
   } from "darkmode-components/src/index";
 
+  import LoginButton from "../components/Buttons/LoginButton.svelte";
+
   // Header Items list
   let headerItems = [
     {
@@ -73,11 +75,9 @@
             <p class="md:ml-3">Go to your Dashboard</p>
           </button>
         { :else }
-          <button on:click={(e) => {
-            window.location.href = `https://account.${$general.globalURL}/authorize/${encodeURIComponent("https://ideas.wavees.ml/login/:code")}?permissions=${$general.account.permissions.join(',')}`;
-          }} class="w-1/3 bg-blue-500 lg:w-full rounded-md font-semibold py-4 text-center text-white shadow-lg">
-            Start now
-          </button>
+          <LoginButton classes="w-1/3 lg:w-full">
+            Start Now
+          </LoginButton>
         {/if}
       </div>
     
