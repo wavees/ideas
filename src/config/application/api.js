@@ -6,5 +6,5 @@ module.exports = {
   blog: {
     url: "https://api.blog.wavees.ml",
     version: "v1"
-  }
+  },
 };

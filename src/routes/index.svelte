@@ -1,4 +1,17 @@
 <script>
+  // Import modules
+  import { user } from "../config/stores/user.js";
+  import { goto } from "@sapper/app";
+
+  import { fade } from "svelte/transition";
+
+  import { onMount } from "svelte";
+  import { general } from "../config/stores/global.js";
+
+  // Importing components.
+  import {
+    Avatar
+  } from "darkmode-components/src/index";
 
   // Header Items list
   let headerItems = [
@@ -14,10 +27,21 @@
       title: "Lorem Ipsum"
     }
   ];
+
+  let loaded = false;
+  onMount(() => {
+    setTimeout(() => {
+      loaded = true;
+    }, 150);
+  });
 </script>
 
 <!-- Main Layout -->
 <main class="w-full h-full relative">
+
+  {#if !loaded}
+    <div out:fade style="z-index: 2;" class="absolute w-full h-screen bg-white"></div>
+  {/if}
 
   <!-- Header -->
   <div class="absolute inset-x-0 top-0 w-full py-4 flex justify-center items-center">
@@ -39,15 +63,30 @@
 
       <!-- Buttons -->
       <div class="w-full mt-8 flex justify-center md:px-6 lg:px-16">
-        <button class="w-1/3 bg-blue-500 lg:w-full rounded-md font-semibold py-4 text-center text-white shadow-lg">
-          Start now
-        </button>
+        {#if $user.tokens.length > 0}
+          <button on:click={(e) => {
+            goto('/dashboard');
+          }} class="w-1/3 bg-blue-500 lg:w-full rounded-md text-md font-semibold py-4 flex justify-center items-center text-center text-white shadow-lg">
+            <span class="hidden md:block">
+              <Avatar spinnerColor="#fff" size="2.4" type="image" avatar={$user.current.avatar} />
+            </span>
+            <p class="md:ml-3">Go to your Dashboard</p>
+          </button>
+        { :else }
+          <button on:click={(e) => {
+            window.location.href = `https://account.${$general.globalURL}/authorize/${encodeURIComponent("https://ideas.wavees.ml/login/:code")}?permissions=${$general.account.permissions.join(',')}`;
+          }} class="w-1/3 bg-blue-500 lg:w-full rounded-md font-semibold py-4 text-center text-white shadow-lg">
+            Start now
+          </button>
+        {/if}
       </div>
     
       <!-- Fully free badge -->
-      <div class="w-full mt-4">
-        <p class="mx-4 text-xs text-gray-600">Totally free</p>
-      </div>
+      {#if !$user.tokens.length > 0}
+        <div class="w-full mt-4">
+          <p class="mx-4 text-xs text-gray-600">It's Totally Free</p>
+        </div>
+      {/if}
     </div>
   </div>
 

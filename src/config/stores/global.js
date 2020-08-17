@@ -7,11 +7,17 @@ readable({
   globalURL: "wavees.ml",
   currentURL: "blog.wavees.ml",
 
-  permissions: [
-    "blog/changeAlias",
-    "blog/follow",
-    "blog/unfollow"
-  ]
+  account: {
+    permissions: [
+      "readEmail",
+      "ideas/viewPolls",
+      "ideas/createPolls",
+      "ideas/managePolls",
+      "ideas/deletePolls",
+      "ideas/viewStatistics",
+      "ideas/accountSettings"
+    ]
+  }
 });
 
 export { general };

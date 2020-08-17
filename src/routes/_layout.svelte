@@ -6,6 +6,8 @@
 	import { locale, locales } from "svelte-i18n";
 	import { user } from "../config/stores/user.js";
 	
+	import { fade } from "svelte/transition";
+	
 	import { colors, theme, Spinner } from "darkmode-components/src/index"
   import Cookie from "cookie-universal";
 
@@ -52,10 +54,10 @@
 		<slot></slot>
 	</main>
 { :else }
-	<div style="height: 100vh;" class="w-full flex justify-center items-center bg-black">
+	<div class="absolute w-full h-screen flex justify-center items-center bg-white">
 		<!-- Branding -->
-		<div class="flex flex-col justify-center items-center">
-			<Spinner size="15" color="#fff" />
+		<div transition:fade class="flex flex-col justify-center items-center">
+			<Spinner size="15"  />
 		</div>
 	</div>
 { /if }
