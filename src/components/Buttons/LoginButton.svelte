@@ -39,7 +39,7 @@
       };
     });
 
-    let loginURI = `https://account.${$general.globalURL}/authorize/${encodeURIComponent("http://localhost:3000/login/:code")}?permissions=${$general.account.permissions.join(',')}`
+    let loginURI = `https://account.${$general.globalURL}/authorize/${encodeURIComponent("https://ideas.wavees.ml/login/:code")}?permissions=${$general.account.permissions.join(',')}`
     // https://ideas.wavees.ml/login/:code
 
     // Let's firstly prepare our popup window
