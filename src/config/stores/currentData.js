@@ -49,7 +49,7 @@ function createCurrentDataStore() {
         });
       } else if (type == "organizationsList") {
         update((object) => {
-          object.organizations.list   = object;
+          object.organizations.list   = data;
           object.organizations.loaded = true;
 
           return object;

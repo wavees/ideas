@@ -12,7 +12,9 @@
   import {
     Avatar
   } from "darkmode-components/src/index";
+
   import NetworkStatus from "../../components/NetworkStatus.svelte";
+  import ProjectsList from "../../components/Header/ProjectsList.svelte";
 
   import { onMount } from "svelte";
 
@@ -32,8 +34,10 @@
   });
 
   // Listen for organizationsList event from server.
-  socket.on('organizationsList', (list) => {
-    data.pasteData('organizationsList', list);
+  socket.on('organizationsList', (object) => {
+    console.log("RECEIVED OBJECT");
+    console.log(object);
+    data.pasteData('organizationsList', object.response);
   });
 
   // Header Items list
@@ -68,10 +72,13 @@
       <p class="text-xl text-gray-700">ideas</p>
 
       <!-- badge -->
-      <div class="rounded-lg bg-gray-300 rounded-lg py-1 flex items-center px-4 mx-8">
+      <div class="rounded-lg h-8 bg-gray-300 rounded-lg flex items-center px-4 ml-8 mr-4">
         <img style="height: 1rem;" src="./icons/face-with-party-horn-and-party-hat.png" alt="Smiley =)">
         <p class="ml-2 text-xs text-gray-800">Open beta</p>
       </div>
+
+      <!-- Projects List -->
+      <ProjectsList />
     </div>
 
     <!-- Links (centered) -->
