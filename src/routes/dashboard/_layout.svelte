@@ -35,6 +35,7 @@
 
   // Listen for organizationsList event from server.
   socket.on('organizationsList', (object) => {
+    console.log(object);
     data.pasteData('organizationsList', object.response);
   });
 

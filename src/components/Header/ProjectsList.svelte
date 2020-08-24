@@ -20,7 +20,7 @@
   </button>
 
   <div slot="content" class="pt-4">
-    <div style="width: 20rem; max-height: 45vh; overflow: hidden;" class="shadow-lg bg-white rounded-lg flex flex-col items-center text-center py-6">
+    <div style="width: 20rem; max-height: 65vh; overflow: hidden;" class="shadow-lg bg-white rounded-lg flex flex-col items-center text-center py-6">
       <!-- Let's now list all user's projects -->
 
       <div class="px-2 md:px-4 my-4">
@@ -28,15 +28,15 @@
         <p class="text-xs text-gray-700 mt-4"><span class="border-b-1 border-dotted border-gray-700">Organizations</span> is a new way to team up in Wavees Ideas. And we seriously do not know why we did it. Maybe somebody could use it? Well, maybe somebody...</p>
       </div>
 
-      <div class="px-2 md:px-4 mt-4 relative">
+      <div style="overflow-y: auto;" class="w-full px-2 md:px-4 mt-4 relative">
         {#each $data.organizations.list as organization}
           <button class="my-2 h-12 w-full flex px-4 md:px-6 rounded-lg items-center bg-gray-200 hover:bg-gray-300">
             <Avatar word="{organization.name}" size="2" />
             
             <!-- Organization name and description -->
             <div class="ml-3 flex flex-col items-start">
-              <h1 class="text-xs">{organization.name}</h1>
-              <p class="text-extra-xs text-gray-700">{organization.description == null ? organization.type == "UserOrganization" ? "Yours very own organization" : "Normal Organization" : organization.description}</p>
+              <h1 class="text-xs">{organization.name.slice(0, 15)}{organization.name.split('').length >= 15 ? "..." : ""}</h1>
+              <p class="text-extra-xs text-gray-700">{organization.description == null ? organization.type == "UserOrganization" ? "Your own organization" : "Normal Organization" : `${organization.description.slice(0, 20)}${organization.description.split('').length >= 20 ? "..." : ""}`}</p>
             </div>
           </button>
         {/each}
