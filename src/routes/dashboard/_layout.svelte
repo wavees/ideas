@@ -35,8 +35,6 @@
 
   // Listen for organizationsList event from server.
   socket.on('organizationsList', (object) => {
-    console.log("RECEIVED OBJECT");
-    console.log(object);
     data.pasteData('organizationsList', object.response);
   });
 
@@ -68,7 +66,7 @@
   <!-- Header -->
   <div class="w-full py-4 flex justify-between px-4 md:px-8 relative bg-white">
     <!-- Logotype -->
-    <div class="flex items-center">
+    <div style="z-index: 2;" class="flex items-center">
       <p class="text-xl text-gray-700">ideas</p>
 
       <!-- badge -->
@@ -82,14 +80,14 @@
     </div>
 
     <!-- Links (centered) -->
-    <div class="hidden md:flex w-full justify-center items-center absolute inset-x-0 py-3">
+    <div style="z-index: 0;" class="hidden md:flex w-full justify-center items-center absolute inset-x-0 py-3">
       {#each headerItems as item}
         <a class="mx-6 text-gray-700 text-xs" href="{item.link}">{item.title}</a>
       {/each}
     </div>
 
     <!-- Profile -->
-    <div class="flex items-center">
+    <div style="z-index: 1;" class="flex items-center">
       <!-- Network Status icon -->
       <NetworkStatus />
 
